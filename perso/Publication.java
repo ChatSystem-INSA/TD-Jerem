@@ -1,3 +1,4 @@
+package perso;
 
 public class Publication {
     private String titre;
@@ -6,6 +7,14 @@ public class Publication {
     public Publication(String titre, int annee) {
         this.titre = titre;
         this.annee = annee;
+    }
+
+    @Override
+    public String toString() {
+        return "Publication{" +
+                "titre='" + titre + '\'' +
+                ", annee=" + annee +
+                '}';
     }
 
     public String getTitre() {

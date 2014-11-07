@@ -1,20 +1,18 @@
 package perso;
 
-import perso.Enseignant;
+import java.util.ArrayList;
 
 /**
  * Created by boutoill on 07/11/14.
  */
 public class EnseignantChercheur extends Enseignant implements IChercheur {
 
-    public static final int SIZE = 10;
-    private Publication[] publications;
-    private int countEntries;
+    public static final int MAX_PUB = 10;
+    private ArrayList<Publication> publications;
 
     public EnseignantChercheur(String nom, int age, int heures) {
         super(nom, age, heures);
-        this.publications = new Publication[this.SIZE];
-        this.countEntries = 0;
+        this.publications = new ArrayList<Publication>();
     }
 
     public String toString()
@@ -24,20 +22,14 @@ public class EnseignantChercheur extends Enseignant implements IChercheur {
 
     @Override
     public void ajouterPublication(Publication p) {
-        if(this.countEntries < this.SIZE)
+        if(this.publications.size() < this.MAX_PUB)
         {
-            this.publications[this.countEntries] = p;
-            this.countEntries += 1;
+            this.publications.add(p);
         }
     }
 
     @Override
     public String listerPublications() {
-        String retour = "{";
-        for(int i = 0; i<this.countEntries; i++)
-        {
-            retour += this.publications[i].toString() + " ";
-        }
-        return retour + "}";
+        return this.publications.toString();
     }
 }

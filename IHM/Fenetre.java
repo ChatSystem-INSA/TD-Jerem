@@ -2,15 +2,16 @@ package IHM;
 
 import javax.swing.*;
 import java.awt.*;
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.*;
 
 /**
  * Created by Banana on 07/11/14.
  */
 public class Fenetre extends JFrame {
 
-    private BufferedWriter write;
+    private BufferedWriter writer;
     private BufferedReader reader;
     private JButton bReceive;
     private JButton bSend;
@@ -19,8 +20,20 @@ public class Fenetre extends JFrame {
     private JTextArea textRec;
     private JTextArea textToSend;
 
-    public Fenetre() {
+    public Fenetre(String in, String out) {
         super();
+
+        try {
+            this.reader = new BufferedReader(new FileReader(in));
+            this.writer = new BufferedWriter(new FileWriter(out));
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+            return;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return;
+        }
+
         this.initComponents();
     }
 
@@ -35,6 +48,34 @@ public class Fenetre extends JFrame {
         JScrollPane scrollSend = new JScrollPane(textToSend, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
         this.bReceive = new JButton("recv");
         this.bSend = new JButton("send");
+
+        this.bSend.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    writer.write(textToSend.getText() + "\n");
+                    writer.flush();
+                    textToSend.setText("");
+                } catch (IOException e1) {
+                    e1.printStackTrace();
+                }
+            }
+        });
+
+        this.bReceive.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    String in = reader.readLine();
+                    if(in != null)
+                    {
+                        textRec.append(in+"\n");
+                    }
+                } catch (IOException e1) {
+                    e1.printStackTrace();
+                }
+            }
+        });
 
         this.setLayout(new GridLayout(3, 2));
         this.add(lMessSend);
@@ -51,7 +92,15 @@ public class Fenetre extends JFrame {
 
     public static void main(String[] args)
     {
-        Fenetre f = new Fenetre();
+        if(args.length != 2)
+        {
+            System.out.println("Usage :");
+            System.out.println("\tprogram <file_in> <file_out>");
+            return;
+        }
+
+        System.out.println("Using "+args[0]+" and "+args[1]);
+        Fenetre f = new Fenetre(args[0], args[1]);
     }
 
 }

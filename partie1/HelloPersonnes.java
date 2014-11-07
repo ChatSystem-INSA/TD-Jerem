@@ -1,7 +1,8 @@
+package partie1;
 
-import perso.Personne;
-import perso.Etudiant;
-import perso.Enseignant;
+import partie1.perso.Personne;
+import partie1.perso.Etudiant;
+import partie1.perso.Enseignant;
 
 class HelloPersonnes {
 	

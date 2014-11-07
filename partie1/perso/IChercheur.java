@@ -1,4 +1,4 @@
-package perso;
+package partie1.perso;
 
 public interface IChercheur {
     public void ajouterPublication(Publication p);

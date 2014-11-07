@@ -1,6 +1,8 @@
-import perso.EnseignantChercheur;
-import perso.IChercheur;
-import perso.Publication;
+package partie1;
+
+import partie1.perso.EnseignantChercheur;
+import partie1.perso.IChercheur;
+import partie1.perso.Publication;
 
 public class HelloChercheur {
 

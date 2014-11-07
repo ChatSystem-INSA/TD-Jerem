@@ -1,5 +1,5 @@
 
-package perso;
+package partie1.perso;
 
 public class Etudiant extends Personne {
 	

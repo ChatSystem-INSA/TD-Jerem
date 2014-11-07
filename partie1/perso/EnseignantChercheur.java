@@ -1,4 +1,4 @@
-package perso;
+package partie1.perso;
 
 import java.util.ArrayList;
 

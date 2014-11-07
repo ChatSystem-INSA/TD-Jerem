@@ -1,4 +1,4 @@
-package perso;
+package partie1.perso;
 
 public class Publication {
     private String titre;

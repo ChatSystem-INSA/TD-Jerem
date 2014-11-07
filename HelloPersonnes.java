@@ -6,17 +6,12 @@ import perso.Enseignant;
 class HelloPersonnes {
 	
 	public static void main(String[] args) {
-
-		Personne[] tableau = new Personne[3];
-		tableau[0] = new Personne("Patate", 10);
-		tableau[1] = new Etudiant("Table", 1337, 42);
-		tableau[2] = new Enseignant("Prout", -10, 1000);
-
-		for(Personne p : tableau)
-		{
-			System.out.println(p.toString());
-		}
-
+		Personne p1 = new Personne("Patate", 10);
+		Personne p2 = new Etudiant("Table", 1337, 42);
+		Personne p3 = new Enseignant("Prout", -10, 1000);
+		System.out.println(p1);
+		System.out.println(p2);
+		System.out.println(p3);
 	}
 
 }
